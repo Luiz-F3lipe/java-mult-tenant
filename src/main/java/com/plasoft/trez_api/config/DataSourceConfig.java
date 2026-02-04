@@ -17,8 +17,9 @@ public class DataSourceConfig {
 
     @Bean
     public DataSource getDataSource() {
-        TenantAwareRoutingDataSource tenantAwareRoutingDataSource = new TenantAwareRoutingDataSource();
-        tenantAwareRoutingDataSource.setTargetDataSources(dataSourceProperties.getDatasources());
+        TenantAwareRoutingDataSource tenantAwareRoutingDataSource = 
+                new TenantAwareRoutingDataSource(dataSourceProperties);
+        tenantAwareRoutingDataSource.initialize();
         tenantAwareRoutingDataSource.afterPropertiesSet();
         return tenantAwareRoutingDataSource;
     }

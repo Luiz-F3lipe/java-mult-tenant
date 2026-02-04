@@ -2,32 +2,45 @@ package com.plasoft.trez_api.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-
-import javax.sql.DataSource;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Component
-@ConfigurationProperties(prefix = "spring")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DataSourceProperties {
 
-    private final Map<Object, Object> datasources = new LinkedHashMap<>();
+    private String baseUrl;
+    private String username;
+    private String password;
+    private String driverClassName;
 
-    public Map<Object, Object> getDatasources() {
-        return datasources;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public void setDatasources(Map<String, Map<String, String>> datasources) {
-        datasources.forEach((key, value) -> this.datasources.put(key, convert(value)));
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
-    private DataSource convert(Map<String, String> source) {
-        return DataSourceBuilder.create()
-                .url(source.get("url"))
-                .driverClassName(source.get("driver-class-name"))
-                .username(source.get("username"))
-                .password(source.get("password"))
-                .build();
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
     }
 }

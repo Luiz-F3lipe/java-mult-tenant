@@ -4,14 +4,8 @@ server:
 spring:
   jpa:
     show-sql: true
-  datasources:
-    tenant1:
-      url: jdbc:postgresql://localhost:5432/tenant1
-      username: postgres
-      password: docker
-      driver-class-name: org.postgresql.Driver
-    tenant2:
-      url: jdbc:postgresql://localhost:5432/tenant2
-      username: postgres
-      password: docker
-      driver-class-name: org.postgresql.Driver
+  datasource:
+    base-url: jdbc:postgresql://localhost:5432/
+    username: postgres
+    password: docker
+    driver-class-name: org.postgresql.Driver
